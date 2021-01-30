@@ -5,7 +5,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import ru.ItzDarth.DarthRPG.DarthRPG;
 import ru.ItzDarth.DarthRPG.api.darthrpg.RPGApi;
 
 public class QuitListener implements Listener {
@@ -14,8 +13,7 @@ public class QuitListener implements Listener {
 	public void onPlayerQuit(PlayerQuitEvent e) {
 		Player p = e.getPlayer();
 		
-		RPGApi.getRPGPlayer(p).remove();
-		p.removeMetadata("info", DarthRPG.INSTANCE);
+		RPGApi.removeRPGPlayer(p).remove();
 	}
 	
 }

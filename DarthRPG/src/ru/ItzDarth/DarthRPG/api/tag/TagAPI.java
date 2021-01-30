@@ -87,8 +87,10 @@ public class TagAPI {
             ReflectionAPI.setField(packet, "b", team_name);
             ReflectionAPI.setField(packet, "c", prefix);
             ReflectionAPI.setField(packet, "e", "ALWAYS");
-            ReflectionAPI.setField(packet, "h", 0);
-            ReflectionAPI.setField(packet, "g", contents);
+            ReflectionAPI.setField(packet, "h", contents);
+            ReflectionAPI.setField(packet, "i", 0);
+            //ReflectionAPI.setField(packet, "h", 0);
+            //ReflectionAPI.setField(packet, "g", contents);
             
             return packet;
         } catch(Exception e) {}
@@ -105,7 +107,8 @@ public class TagAPI {
             ReflectionAPI.setField(packet, "b", team_name);
             ReflectionAPI.setField(packet, "c", prefix);
             ReflectionAPI.setField(packet, "e", "ALWAYS");
-            ReflectionAPI.setField(packet, "h", 1);
+            ReflectionAPI.setField(packet, "i", 1);
+            //ReflectionAPI.setField(packet, "h", 1);
             
             return packet;
         } catch(Exception ex) {ex.printStackTrace();}

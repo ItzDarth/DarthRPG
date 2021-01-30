@@ -1,12 +1,9 @@
 package ru.ItzDarth.DarthRPG.api.darthrpg.player;
 
 import org.bukkit.entity.Player;
-import org.bukkit.metadata.FixedMetadataValue;
 
 import ru.ItzDarth.DarthRPG.DarthRPG;
 import ru.ItzDarth.DarthRPG.api.language.Language;
-import ru.ItzDarth.DarthRPG.api.language.PlayerLangAPI;
-import ru.ItzDarth.DarthRPG.api.skins.SkinsAPI;
 import ru.ItzDarth.DarthRPG.api.tag.TagAPI;
 
 public class RPGPlayer {
@@ -14,6 +11,8 @@ public class RPGPlayer {
 	private Player PLAYER;
 	public Rank RANK;
 	public Language LANGUAGE;
+	
+	private TagAPI tagApi;
 	
 	public RPGPlayer(Player player) {
 		this.PLAYER = player;
@@ -26,21 +25,19 @@ public class RPGPlayer {
 			} else {
 				DarthRPG.MYSQL.insert("INSERT INTO darthrpg_users (name, uuid) VALUES (?, ?)", id -> {}, player.getName(), player.getUniqueId().toString());
 				RANK = Rank.PLAYER;
-				LANGUAGE = PlayerLangAPI.getLanguage(player);
+				LANGUAGE = Language.RUSSIAN;
 			}
 		}, player.getName());
 		
-		SkinsAPI.skinsManager.setPlayerSkin(player, SkinsAPI.skinsManager.getOrLoadMojangSkin(player.getName()), true);
 		updateTag();
 	}
 	
 	public void updateTag() {
-		if(!PLAYER.hasMetadata("nametag")) {
-			PLAYER.setMetadata("nametag", new FixedMetadataValue(DarthRPG.INSTANCE, new TagAPI(PLAYER, RANK.getPrefix(), RANK.getPriority())));
+		if(tagApi == null) {
+			tagApi = new TagAPI(PLAYER, RANK.getPrefix(), RANK.getPriority());
 			return;
 		}
-		TagAPI tag = (TagAPI) PLAYER.getMetadata("nametag").get(0).value();
-		tag.update();
+		tagApi.update();
 	}
 	
 	public void remove() {

@@ -1,5 +1,7 @@
 name: DarthRPG
-main: ru.ItzDarth.DarthRPG.DarthRPG
-version: 1.0
-
+main: ru.ItzDarth.DarthRPG.SakiCore
+version: 0.1
+description: Darth RPG.
 author: ItzDarth
+depends: [DarthCore]
+commands:

@@ -21,6 +21,7 @@ public class RPGPlayer {
 		this.PLAYER = player;
 		
 		// id, name, uuid, rank, language, | class
+		// Hello Darth!
 		DarthRPG.MYSQL.select("SELECT * FROM darthrpg_users WHERE name=?", rs -> {
 			if(rs.next() ) {
 				RANK = Rank.valueOf(rs.getString("rank"));

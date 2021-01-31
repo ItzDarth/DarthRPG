@@ -3,6 +3,8 @@ package ru.ItzDarth.DarthRPG.api.darthrpg.player;
 import org.bukkit.entity.Player;
 
 import ru.ItzDarth.DarthRPG.DarthRPG;
+import ru.ItzDarth.DarthRPG.api.chat.ChatAPI;
+import ru.ItzDarth.DarthRPG.api.darthrpg.LocationAPI;
 import ru.ItzDarth.DarthRPG.api.language.Language;
 import ru.ItzDarth.DarthRPG.api.tag.TagAPI;
 
@@ -11,25 +13,31 @@ public class RPGPlayer {
 	private Player PLAYER;
 	public Rank RANK;
 	public Language LANGUAGE;
+	public zClass CLASS;
 	
 	private TagAPI tagApi;
 	
 	public RPGPlayer(Player player) {
 		this.PLAYER = player;
 		
-		// id, name, uuid, rank, language
+		// id, name, uuid, rank, language, | class
 		DarthRPG.MYSQL.select("SELECT * FROM darthrpg_users WHERE name=?", rs -> {
 			if(rs.next() ) {
 				RANK = Rank.valueOf(rs.getString("rank"));
 				LANGUAGE = Language.valueOf(rs.getString("language"));
+				CLASS = zClass.valueOf(rs.getString("class"));
 			} else {
 				DarthRPG.MYSQL.insert("INSERT INTO darthrpg_users (name, uuid) VALUES (?, ?)", id -> {}, player.getName(), player.getUniqueId().toString());
 				RANK = Rank.PLAYER;
 				LANGUAGE = Language.RUSSIAN;
+				CLASS = zClass.NONE;
 			}
 		}, player.getName());
 		
 		updateTag();
+		
+		player.teleport(LocationAPI.LOADING_LOCATION);
+		ChatAPI.sendTitle(player, LANGUAGE.getMessage("loading-game-title"), LANGUAGE.getMessage("loading-game-subtitle"), 5, 40, 5);
 	}
 	
 	public void updateTag() {
@@ -42,10 +50,12 @@ public class RPGPlayer {
 	
 	public void remove() {
 		DarthRPG.MYSQL.async().update("UPDATE darthrpg_users SET "+
-				"rank=?"+
+				"rank=?,"+
+				"language=?"+
 				" WHERE name=?", 
 				() -> {}, 
 				RANK.name(),
+				LANGUAGE.name(),
 				
 				PLAYER.getName());
 	}

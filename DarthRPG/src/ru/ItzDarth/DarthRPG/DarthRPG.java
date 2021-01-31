@@ -2,6 +2,7 @@ package ru.ItzDarth.DarthRPG;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import ru.ItzDarth.DarthRPG.api.darthrpg.LocationAPI;
 import ru.ItzDarth.DarthRPG.api.language.Language;
 import ru.ItzDarth.DarthRPG.api.language.LanguageManager;
 import ru.ItzDarth.DarthRPG.api.mysql.MySQL;
@@ -23,6 +24,8 @@ public class DarthRPG extends JavaPlugin {
 		
 		LanguageManager.loadSite(Language.RUSSIAN);
 		LanguageManager.loadSite(Language.ENGLISH);
+		
+		LocationAPI.init();
 		
 		MYSQL = MySQLAPI.connect("localhost", 3306, "darthrpg", "root", "");
 		getServer().getPluginManager().registerEvents(new JoinListener(), this);

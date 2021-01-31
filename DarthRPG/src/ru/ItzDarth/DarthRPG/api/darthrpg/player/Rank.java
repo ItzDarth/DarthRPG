@@ -9,6 +9,8 @@ public enum Rank {
 	HERO("§dHERO", "§dHERO", 5),
 	CHAMPION("§eCHAMPION", "§eCHAMPION", 4),
 	
+	BUILDER("§eBUILDER", "§eBUILDER", 3),
+	
 	MODER("§9MOD", "§9MOD", 3),
 	MODPLUS("§9MOD+", "§9MOD+", 2),
 	ADMIN("§cADMIN", "§cADMIN", 1);

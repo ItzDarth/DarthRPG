@@ -7,6 +7,7 @@ import ru.ItzDarth.DarthRPG.api.chat.ChatAPI;
 import ru.ItzDarth.DarthRPG.api.darthrpg.LocationAPI;
 import ru.ItzDarth.DarthRPG.api.language.Language;
 import ru.ItzDarth.DarthRPG.api.tag.TagAPI;
+import ru.ItzDarth.DarthRPG.menus.start.SelectLanguageGUI;
 
 public class RPGPlayer {
 	
@@ -39,6 +40,19 @@ public class RPGPlayer {
 		
 		player.teleport(LocationAPI.LOADING_LOCATION);
 		ChatAPI.sendTitle(player, LANGUAGE.getMessage("loading-game-title"), LANGUAGE.getMessage("loading-game-subtitle"), 5, 40, 5);
+		player.setResourcePack("http://aimatt.hldns.ru/rpg/rp/DarthRPG.zip");
+	}
+	
+	public void checkIfClass() {
+		if(CLASS == zClass.NONE) {
+			new SelectLanguageGUI(PLAYER);
+		} else {
+			loadAndStart(false);
+		}
+	}
+	
+	public void loadAndStart(boolean tutorial) {
+		
 	}
 	
 	public void updateTag() {

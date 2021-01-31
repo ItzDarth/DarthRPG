@@ -8,8 +8,10 @@ import ru.ItzDarth.DarthRPG.api.language.LanguageManager;
 import ru.ItzDarth.DarthRPG.api.mysql.MySQL;
 import ru.ItzDarth.DarthRPG.api.mysql.MySQLAPI;
 import ru.ItzDarth.DarthRPG.api.npc.NpcAPI;
+import ru.ItzDarth.DarthRPG.listeners.InventoryListener;
 import ru.ItzDarth.DarthRPG.listeners.JoinListener;
 import ru.ItzDarth.DarthRPG.listeners.QuitListener;
+import ru.ItzDarth.DarthRPG.listeners.ResourcePackListener;
 
 public class DarthRPG extends JavaPlugin {
 	
@@ -30,6 +32,8 @@ public class DarthRPG extends JavaPlugin {
 		MYSQL = MySQLAPI.connect("localhost", 3306, "darthrpg", "root", "");
 		getServer().getPluginManager().registerEvents(new JoinListener(), this);
 		getServer().getPluginManager().registerEvents(new QuitListener(), this);
+		getServer().getPluginManager().registerEvents(new ResourcePackListener(), this);
+		getServer().getPluginManager().registerEvents(new InventoryListener(), this);
 	}
 	
 	public void onDisable() {

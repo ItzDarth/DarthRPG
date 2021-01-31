@@ -31,12 +31,20 @@ public class ItemCreator {
 		itemStack = new ItemStack(material);
 	}
 	
+	public ItemCreator(Material material, int data) {
+		itemStack = new ItemStack(material, 1, (short) data);
+	}
+	
 	public ItemCreator(int id) {
 		itemStack = new ItemStack(id);
 	}
 	
 	public ItemCreator(int id, int data) {
 		itemStack = new ItemStack(id, 1, (short) data);
+	}
+	
+	public ItemCreator(ItemStack itemStack) {
+		this.itemStack = itemStack;
 	}
 	
 	/**

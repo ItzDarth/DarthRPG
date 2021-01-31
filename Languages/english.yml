@@ -1,1 +1,5 @@
-choose-class-title: 'Выбор класса'
+choose-language-title: '§aEnglish'
+choose-language-lore:
+- '§7Selects the language §aEnglish'
+- ''
+- '§eClick to the select!'

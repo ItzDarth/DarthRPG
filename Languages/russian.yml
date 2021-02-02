@@ -16,6 +16,12 @@ choose-language-lore:
 
 choose-class-title: 'Выбор класса'
 
+class-name-warrior: 'Воин'
+class-name-archer: 'Лучник'
+class-name-mage: 'Маг'
+class-name-berserk: 'Берсерк'
+class-name-archemage: 'Архимаг'
+
 choose-class-warrior-title: '§fВыбрать §6§lВоина'
 choose-class-warrior-lore:
 - '§6⚔ Урон:             §a■■■■§7■'
@@ -105,3 +111,28 @@ choose-class-archemage-lore:
 - '§7к вашей цели.'
 - ''
 - '§eНажмите, чтобы выбрать!'
+
+item-lore-lvlmin-y: '§a✓ §7Минимальный Уровень: {lvl}'
+item-lore-lvlmin-n: '§c✕ §7Минимальный Уровень: {lvl}'
+
+item-lore-classneed-y: '§a✓ §7Требующиеся Класс: {class}'
+item-lore-classneed-n: '§c✕ §7Требующиеся Класс: {class}'
+
+item-lore-damagetype-physical: 'Нейтральный §7Урон: {dmg}'
+item-lore-damagetype-earth: 'Земляной §7Урон: {dmg}'
+item-lore-damagetype-thunder: 'Электрический §7Урон: {dmg}'
+item-lore-damagetype-water: 'Водяной §7Урон: {dmg}'
+item-lore-damagetype-fire: 'Огненный §7Урон: {dmg}'
+item-lore-damagetype-air: 'Воздушный §7Урон: {dmg}'
+
+item-lore-slots-powder: '§7[{current}/{max}] Слотов Порошков'
+
+item-lore-rarity-normal: 'Обычный'
+item-lore-rarity-unique: 'Уникальный'
+item-lore-rarity-rare: 'Редкий'
+item-lore-rarity-legendary: 'Легендарный'
+item-lore-rarity-fabled: 'Сказочный'
+item-lore-rarity-mythic: 'Мистический'
+
+item-lore-indetification-health-regen: '{value} §7Восстановление маны'
+

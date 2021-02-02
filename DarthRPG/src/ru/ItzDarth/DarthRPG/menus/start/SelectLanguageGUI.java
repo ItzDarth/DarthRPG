@@ -24,6 +24,7 @@ public class SelectLanguageGUI {
 				).addClickAction(new ClickAction() {
 			public void execute(Player player) {
 				rp.LANGUAGE = Language.RUSSIAN;
+				inv.setCancelClose(false);
 				new ChooseClassGUI(player);
 			}
 		}));
@@ -35,6 +36,7 @@ public class SelectLanguageGUI {
 				).addClickAction(new ClickAction() {
 			public void execute(Player player) {
 				rp.LANGUAGE = Language.ENGLISH;
+				inv.setCancelClose(false);
 				new ChooseClassGUI(player);
 			}
 		}));

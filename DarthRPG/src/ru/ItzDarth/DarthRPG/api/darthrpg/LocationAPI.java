@@ -8,7 +8,7 @@ public class LocationAPI {
 	public static Location LOADING_LOCATION;
 	
 	public static void init() {
-		LOADING_LOCATION = new Location(Bukkit.getWorld("world"), 8.5, 5, 8.5, 0, 0);
+		LOADING_LOCATION = new Location(Bukkit.getWorld("map"), 8.5, 5, 8.5, 0, 0);
 	}
 	
 }

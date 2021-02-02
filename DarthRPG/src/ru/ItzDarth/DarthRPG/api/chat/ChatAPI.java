@@ -9,12 +9,6 @@ public class ChatAPI {
 	
 	private final static int CENTER_PX = 154;
 	
-	/**
-	 * Отправляет игроку сообщения, отцентровывая его
-	 *
-	 * @param   player   Игрок
-	 * @param   message  Сообщение
-	 */
 	public static void sendCenteredMessage(Player player, String message) {
         if(message == null || message.equals("")) {
         	player.sendMessage("");
@@ -26,7 +20,7 @@ public class ChatAPI {
         boolean isBold = false;
         
         for(char c : message.toCharArray()) {
-        	if(c == '§') {
+        	if(c == 'пїЅ') {
         		previousCode = true;
         		continue;
         	} else if(previousCode == true) {
@@ -54,36 +48,13 @@ public class ChatAPI {
         player.sendMessage(sb.toString() + message);
     }
 	
-	/**
-	 * Отправляет игроку сообщения на весь экран
-	 *
-	 * @param   player      Игрок
-	 * @param   title       Сообщение первого порядка
-	 * @param   subtitle    Сообщение второго порядка
-	 * @param   show        Появление в тиках
-	 * @param   stay        Показ в тиках
-	 * @param   hide        Затемнение в тиках
-	 */
 	public static void sendTitle(Player player, String title, String subtitle, int show, int stay, int hide) {
 		player.sendTitle(title, subtitle, show, stay, hide);
 	}
-	/**
-	 * Отправляет игроку сообщения на весь экран
-	 *
-	 * @param   player      Игрок
-	 * @param   title       Сообщение первого порядка
-	 * @param   subtitle    Сообщение второго порядка
-	 */
 	public static void sendTitle(Player player, String title, String subtitle) {
 		player.sendTitle(title, subtitle, 20, 20, 20);
 	}
 	
-	/**
-	 * Отправляет игроку сообщения над инвентарем
-	 *
-	 * @param   player      Игрок
-	 * @param   message     Сообщение
-	 */
 	public static void sendActionBar(Player player, String message) {
 		player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
 	}

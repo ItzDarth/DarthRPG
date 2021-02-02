@@ -8,18 +8,18 @@ import ru.ItzDarth.DarthRPG.api.darthrpg.player.RPGPlayer;
 
 public class RPGApi {
 	
-	private static HashMap<Player, RPGPlayer> RPGPlayers = new HashMap<Player, RPGPlayer>();
+	public static HashMap<Player, RPGPlayer> RPGPLAYERS = new HashMap<Player, RPGPlayer>();
 	
 	public static RPGPlayer addRPGPlayer(Player p) {
-		return RPGPlayers.put(p, new RPGPlayer(p));
+		return RPGPLAYERS.put(p, new RPGPlayer(p));
 	}
 	
 	public static RPGPlayer removeRPGPlayer(Player p) {
-		return RPGPlayers.remove(p);
+		return RPGPLAYERS.remove(p);
 	}
 	
 	public static RPGPlayer getRPGPlayer(Player p) {
-		return RPGPlayers.get(p);
+		return RPGPLAYERS.get(p);
 	}
 	
 }

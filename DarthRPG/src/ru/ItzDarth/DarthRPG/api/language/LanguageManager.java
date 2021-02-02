@@ -44,6 +44,7 @@ public class LanguageManager {
 			String token = "2cbbc38423c40c8559c46b95cb03f4251870ee31:x-oauth-basic";
 			String authString = "Basic " + Base64.encodeBase64String(token.getBytes());
 			connection.setRequestProperty("Authorization", authString);
+			connection.setRequestProperty("Accept-Charset", "UTF-8");
 			Map<Object, Object> map = YAML.loadAs(new InputStreamReader(connection.getInputStream()), LinkedHashMap.class);
 	        if (map == null)
 	            return;
@@ -60,7 +61,7 @@ public class LanguageManager {
 	            language.addMessage(key, data.toString());
 	        }
 	        
-	        Bukkit.getConsoleSender().sendMessage("§c[DarthRPG] §fÇàãğóæåíî §c"+map.entrySet().size()+" §fñòğîê â §c"+language.name().toLowerCase()+".yml");
+	        Bukkit.getConsoleSender().sendMessage("Â§c[DarthRPG] Â§fĞ—Ğ°Ğ³Ñ€ÑƒĞ¶ĞµĞ½Ğ¾ Â§c"+map.entrySet().size()+" Â§fÑÑ‚Ñ€Ğ¾Ğº Ğ² Â§c"+language.name().toLowerCase()+".yml");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

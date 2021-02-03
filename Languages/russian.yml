@@ -134,6 +134,8 @@ item-lore-rarity-legendary: 'Легендарный'
 item-lore-rarity-fabled: 'Сказочный'
 item-lore-rarity-mythic: 'Мистический'
 
+item-woodenstaff-name: 'Деревянный посох'
+
 item-lore-indetification-health-regen: '{value} §7Восстановление маны'
 
 item-attack-class: '§cВаш класс не может использовать такой вид оружия'

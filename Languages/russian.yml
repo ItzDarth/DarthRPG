@@ -134,7 +134,17 @@ item-lore-rarity-legendary: 'Легендарный'
 item-lore-rarity-fabled: 'Сказочный'
 item-lore-rarity-mythic: 'Мистический'
 
+item-woodenstaff-name: 'Деревянный посох'
+
 item-lore-indetification-health-regen: '{value} §7Восстановление маны'
 
 item-attack-class: '§cВаш класс не может использовать такой вид оружия'
 item-attack-lvl: '§cУ вас недостаточно уровня, чтобы использовать это оружие'
+
+spell-heal-name: 'Регенерация'
+spell-teleport-name: 'Телепортация'
+spell-meteor-name: 'Метеор'
+
+spell-cast-not-combination: '§cДанной комбинации не существует'
+spell-cast-not-mana: '§cУ вас недостаточно маны!'
+spell-cast-success: '§7Вы использовали заклинание §f{spell}'

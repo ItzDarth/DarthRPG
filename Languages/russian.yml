@@ -136,3 +136,5 @@ item-lore-rarity-mythic: 'Мистический'
 
 item-lore-indetification-health-regen: '{value} §7Восстановление маны'
 
+item-attack-class: '§cВаш класс не может использовать такой вид оружия'
+item-attack-lvl: '§cУ вас недостаточно уровня, чтобы использовать это оружие'

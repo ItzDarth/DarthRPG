@@ -145,3 +145,4 @@ spell-heal-name: 'Регенерация'
 
 spell-cast-not-combination: '§cДанной комбинации не существует'
 spell-cast-not-mana: '§cУ вас недостаточно маны!'
+spell-cast-success: '§7Вы использовали заклинание §f{spell}'

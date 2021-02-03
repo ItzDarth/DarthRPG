@@ -6,3 +6,4 @@ author: ItzDarth
 
 commands:
   build:
+  test:

@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.inventory.ItemStack;
 
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import net.minecraft.server.v1_12_R1.NBTTagList;
 import ru.ItzDarth.DarthRPG.api.darthrpg.items.indetifications.Indetification;
 import ru.ItzDarth.DarthRPG.api.darthrpg.player.RPGPlayer;
 import ru.ItzDarth.DarthRPG.api.darthrpg.player.zClass;
@@ -15,18 +16,67 @@ import ru.ItzDarth.DarthRPG.utils.Utils;
 
 public class RPGItem {
 	
+	public static ItemStack updateInfoItem(RPGPlayer rp, ItemStack item, NBTTagCompound tag) {
+		int level = tag.getInt("level");
+		zClass Class = zClass.valueOf(tag.getString("class"));
+		ItemRarity rarity = ItemRarity.valueOf(tag.getString("rarity"));
+		
+		int physical = tag.getInt(DamageType.PHYSICAL.name().toLowerCase());
+		int earth = tag.getInt(DamageType.EARTH.name().toLowerCase());
+		int thunder = tag.getInt(DamageType.THUNDER.name().toLowerCase());
+		int water = tag.getInt(DamageType.WATER.name().toLowerCase());
+		int fire = tag.getInt(DamageType.FIRE.name().toLowerCase());
+		int air = tag.getInt(DamageType.AIR.name().toLowerCase());
+		
+		List<String> lores = new ArrayList<String>();
+		lores.add("");
+		if(physical > 0) lores.add(DamageType.PHYSICAL.STARTWITH+" "+rp.LANGUAGE.getMessage("item-lore-damagetype-"+DamageType.PHYSICAL.name().toLowerCase()).replace("{dmg}", Utils.commas(physical)));
+		if(earth > 0) lores.add(DamageType.EARTH.STARTWITH+" "+rp.LANGUAGE.getMessage("item-lore-damagetype-"+DamageType.EARTH.name().toLowerCase()).replace("{dmg}", Utils.commas(earth)));
+		if(thunder > 0) lores.add(DamageType.THUNDER.STARTWITH+" "+rp.LANGUAGE.getMessage("item-lore-damagetype-"+DamageType.THUNDER.name().toLowerCase()).replace("{dmg}", Utils.commas(thunder)));
+		if(water > 0) lores.add(DamageType.WATER.STARTWITH+" "+rp.LANGUAGE.getMessage("item-lore-damagetype-"+DamageType.WATER.name().toLowerCase()).replace("{dmg}", Utils.commas(water)));
+		if(fire > 0) lores.add(DamageType.FIRE.STARTWITH+" "+rp.LANGUAGE.getMessage("item-lore-damagetype-"+DamageType.FIRE.name().toLowerCase()).replace("{dmg}", Utils.commas(fire)));
+		if(air > 0) lores.add(DamageType.AIR.STARTWITH+" "+rp.LANGUAGE.getMessage("item-lore-damagetype-"+DamageType.AIR.name().toLowerCase()).replace("{dmg}", Utils.commas(air)));
+		
+		lores.add("");
+		lores.add(rp.LANGUAGE.getMessage("item-lore-lvlmin-"+(rp.level >= level ? "y" : "n")).replace("{lvl}", level+""));
+		lores.add(rp.LANGUAGE.getMessage("item-lore-classneed-"+(rp.CLASS == Class ? "y" : "n")).replace("{class}", rp.LANGUAGE.getMessage("class-name-"+Class.name().toLowerCase())));
+		lores.add("");
+		
+		NBTTagList indetifications = tag.getList("indetifications", 10);
+		
+		for(int i = 0; i < indetifications.size(); i++) {
+			NBTTagCompound list = indetifications.get(i);
+			String name = list.getString("a");
+			int value = list.getInt("b");
+			
+			lores.add(rp.LANGUAGE.getMessage("item-lore-indetification-"+name).replace("{value}", (value > 0 ? "§a" : "§c")+value));
+		}
+		if(indetifications.size() > 0) lores.add("");
+		// ДОДЕЛАТЬ
+		lores.add(rp.LANGUAGE.getMessage("item-lore-slots-powder").replace("{current}", "0").replace("{max}", "4"));
+		lores.add(rarity.STARTWITH+rp.LANGUAGE.getMessage("item-lore-rarity-"+rarity.name().toLowerCase()));
+		
+		return new ItemCreator(item).setLore(lores).build();
+	}
+	
+	public static ItemStack updateInfoItem(RPGPlayer rp, ItemStack item) {
+		NBTTagCompound tag = new ItemNBT(item).getTag();
+		return updateInfoItem(rp, item, tag);
+	}
+	
 	public ItemNBT NBT;
 	public NBTTagCompound TAG;
 	public List<String> lores = new ArrayList<String>();
 	private int level;
 	private zClass CLASS;
 	private RPGPlayer rp;
+	private String key;
 	private ItemRarity rarity;
 	
 	public RPGItem(RPGPlayer rp, ItemCreator itemCreator, int level, zClass CLASS, ItemRarity rarity, String key) {
 		this.rp = rp;
+		this.key = key;
 		this.rarity = rarity;
-		itemCreator.setName(rp.LANGUAGE.getMessage(key));
 		NBT = new ItemNBT(itemCreator.build());
 		TAG = NBT.getTag();
 		
@@ -53,25 +103,28 @@ public class RPGItem {
 	
 	public void setDamage(DamageType type, int damage) {
 		TAG.setInt(type.name().toLowerCase(), damage);
-		lores.add(type.STARTWITH+rp.LANGUAGE.getMessage("item-lore-damagetype-"+type.name().toLowerCase()).replace("{dmg}", Utils.commas(damage)));
+		lores.add(type.STARTWITH+" "+rp.LANGUAGE.getMessage("item-lore-damagetype-"+type.name().toLowerCase()).replace("{dmg}", Utils.commas(damage)));
 	}
 	
 	public void setLoreLevelAndClass() {
+		lores.add("");
 		lores.add(rp.LANGUAGE.getMessage("item-lore-lvlmin-"+(rp.level >= level ? "y" : "n")).replace("{lvl}", level+""));
 		lores.add(rp.LANGUAGE.getMessage("item-lore-classneed-"+(rp.CLASS == CLASS ? "y" : "n")).replace("{class}", rp.LANGUAGE.getMessage("class-name-"+CLASS.name().toLowerCase())));
 		lores.add("");
 	}
 	
-	private NBTTagCompound getIndetifications(List<Indetification> indetifications) {
-		NBTTagCompound tag = new NBTTagCompound();
+	private NBTTagList getIndetifications(List<Indetification> indetifications) {
+		NBTTagList tag = new NBTTagList();
 		for(Indetification indetification : indetifications) {
-			tag.setInt(indetification.NAME, indetification.VALUE);
+			NBTTagCompound data = new NBTTagCompound();
+			data.setString("a", indetification.NAME);
+			data.setInt("b", indetification.VALUE);
+			tag.add(data);
 			lores.add(rp.LANGUAGE.getMessage("item-lore-indetification-"+indetification.NAME).replace("{value}", (indetification.VALUE > 0 ? "§a" : "§c")+indetification.VALUE));
 		}
-		lores.add("");
+		if(indetifications.size() > 0) lores.add("");
 		// ДОДЕЛАТЬ
 		lores.add(rp.LANGUAGE.getMessage("item-lore-slots-powder").replace("{current}", "0").replace("{max}", "4"));
-		//
 		lores.add(rarity.STARTWITH+rp.LANGUAGE.getMessage("item-lore-rarity-"+rarity.name().toLowerCase()));
 		
 		return tag;
@@ -81,7 +134,7 @@ public class RPGItem {
 		TAG.set("indetifications", getIndetifications(indetifications));
 		
 		NBT.setTag(TAG);
-		return NBT.getItemStack();
+		return new ItemCreator(NBT.getItemStack()).setName(rp.LANGUAGE.getMessage(key)).setLore(lores).build();
 	}
 	
 	public enum DamageType {

@@ -23,11 +23,11 @@ public enum ItemAPI {
 	// Воздушный - A
 	//
 	
-	WOODEN_SWORD(new ItemCreator(Material.WOOD_SWORD),                            "item-woodensword",      zClass.WARRIOR,   ItemRarity.NORMAL, new String[][] {{"P", "5"}}, new String[][] {}),
-	WOODEN_BOW(new ItemCreator(Material.BOW),                                     "item-woodenbow",        zClass.ARCHER,    ItemRarity.NORMAL, new String[][] {{"P", "7"}}, new String[][] {}),
-	WOODEN_STAFF(new ItemCreator(Material.STONE_SWORD).setDurability(1),          "item-woodenstaff",      zClass.MAGE,      ItemRarity.NORMAL, new String[][] {{"P", "6"}}, new String[][] {}),
-	WOODEN_BATTLEAXE(new ItemCreator(Material.STONE_AXE).setDurability(1),        "item-woodenbattleaxe",  zClass.BERSERK,   ItemRarity.NORMAL, new String[][] {{"P", "6"}}, new String[][] {}),
-	WOODEN_ARCHEMAGE_STAFF(new ItemCreator(Material.WOOD_SWORD).setDurability(1), "item-woodenarchestaff", zClass.ARCHEMAGE, ItemRarity.NORMAL, new String[][] {{"P", "7"}}, new String[][] {});
+	WOODEN_SWORD(new ItemCreator(Material.WOOD_SWORD),                            "woodensword",      zClass.WARRIOR,   ItemRarity.NORMAL, new String[][] {{"P", "5"}}, new String[][] {}),
+	WOODEN_BOW(new ItemCreator(Material.BOW),                                     "woodenbow",        zClass.ARCHER,    ItemRarity.NORMAL, new String[][] {{"P", "7"}}, new String[][] {}),
+	WOODEN_STAFF(new ItemCreator(Material.STONE_SWORD).setDurability(1),          "woodenstaff",      zClass.MAGE,      ItemRarity.NORMAL, new String[][] {{"P", "6"}}, new String[][] {}),
+	WOODEN_BATTLEAXE(new ItemCreator(Material.STONE_AXE).setDurability(1),        "woodenbattleaxe",  zClass.BERSERK,   ItemRarity.NORMAL, new String[][] {{"P", "6"}}, new String[][] {}),
+	WOODEN_ARCHEMAGE_STAFF(new ItemCreator(Material.WOOD_SWORD).setDurability(1), "woodenarchestaff", zClass.ARCHEMAGE, ItemRarity.NORMAL, new String[][] {{"P", "7"}}, new String[][] {});
 	
 	private ItemCreator item;
 	private String key;
@@ -37,7 +37,7 @@ public enum ItemAPI {
 	
 	ItemAPI(ItemCreator item, String key, zClass CLASS, ItemRarity rarity, String[][] damages, String[][] indetifications) {
 		this.item = item.addItemFlag(ItemFlag.HIDE_ATTRIBUTES).addItemFlag(ItemFlag.HIDE_UNBREAKABLE).setUnbreakable(true);
-		this.key = key+"-name";
+		this.key = "item-"+key+"-name";
 		this.itemInfo = new ItemRegister(damages, indetifications);
 		this.CLASS = CLASS;
 		this.rarity = rarity;

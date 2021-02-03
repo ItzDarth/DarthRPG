@@ -48,28 +48,28 @@ public class ItemCreator {
 	}
 	
 	/**
-	 * Устанавливает материал предмету
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 *
-	 * @param   material  Материал
+	 * @param   material  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 */
 	public ItemCreator setMaterial(Material material) {
 		itemStack = new ItemStack(material);
 		return this;
 	}
 	/**
-	 * Устанавливает материал предмету
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 *
-	 * @param   id  ID предмета
+	 * @param   id  ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 */
 	public ItemCreator setMaterial(int id) {
 		itemStack = new ItemStack(id);
 		return this;
 	}
 	/**
-	 * Устанавливает материал предмету
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 *
-	 * @param   id    ID предмета
-	 * @param   data  Data предмета
+	 * @param   id    ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	 * @param   data  Data пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 */
 	public ItemCreator setMaterial(int id, int data) {
 		itemStack = new ItemStack(id, 1, (short) data);
@@ -77,9 +77,9 @@ public class ItemCreator {
 	}
 	
 	/**
-	 * Устанавливает прочность предмету
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 *
-	 * @param   durability  Прочность
+	 * @param   durability  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 */
 	public ItemCreator setDurability(int durability) {
 		itemStack.setDurability((short) durability);
@@ -87,9 +87,9 @@ public class ItemCreator {
 	}
 	
 	/**
-	 * Устанавливает неразрушимость предмету
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 *
-	 * @param   flag  Включить или выключить
+	 * @param   flag  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 */
 	public ItemCreator setUnbreakable(boolean flag) {
 		ItemMeta meta = itemStack.getItemMeta();
@@ -99,10 +99,10 @@ public class ItemCreator {
 	}
 	
 	/**
-	 * Добавляет зачарования на предмет
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 *
-	 * @param   enchantment  Зачарование
-	 * @param   level        Уровень зачарования
+	 * @param   enchantment  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	 * @param   level        пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 */
 	public ItemCreator addEnchantment(Enchantment enchantment, int level) {
 		ItemMeta meta = itemStack.getItemMeta();
@@ -112,9 +112,9 @@ public class ItemCreator {
 	}
 	
 	/**
-	 * Добавляет флаг на предмет
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 *
-	 * @param   flag  Флаг
+	 * @param   flag  пїЅпїЅпїЅпїЅ
 	 */
 	public ItemCreator addItemFlag(ItemFlag flag) {
 		ItemMeta meta = itemStack.getItemMeta();
@@ -124,9 +124,9 @@ public class ItemCreator {
 	}
 	
 	/**
-	 * Устанавливает имя на предмет
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 *
-	 * @param   name  Имя предмета
+	 * @param   name  пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 */
 	public ItemCreator setName(String name) {
 		ItemMeta meta = itemStack.getItemMeta();
@@ -136,9 +136,9 @@ public class ItemCreator {
 	}
 	
 	/**
-	 * Устанавливает описание на предмет
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 *
-	 * @param   lore  Описание предмета
+	 * @param   lore  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 */
 	public ItemCreator setLore(List<String> lore) {
 		ItemMeta meta = itemStack.getItemMeta();
@@ -147,9 +147,9 @@ public class ItemCreator {
 	    return this;
 	}
 	/**
-	 * Устанавливает описание на предмет
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 *
-	 * @param   lore  Описание предмета
+	 * @param   lore  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 */
 	public ItemCreator setLore(String... lore) {
 		ItemMeta meta = itemStack.getItemMeta();
@@ -159,9 +159,9 @@ public class ItemCreator {
 	}
 	
 	/**
-	 * Устанавливает количество предметов
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 *
-	 * @param   amount  Количество предметов
+	 * @param   amount  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 */
 	public ItemCreator setAmount(int amount) {
 	    itemStack.setAmount(amount);
@@ -169,9 +169,9 @@ public class ItemCreator {
 	}
 	
 	/**
-	 * Устанавливает на кожаную броню цвет
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	 *
-	 * @param   color  Цвет брони
+	 * @param   color  пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	 */
 	public ItemCreator setLeatherColor(Color color) {
 		switch(itemStack.getType()) {
@@ -192,9 +192,9 @@ public class ItemCreator {
 	}
 	
 	/**
-	 * Устанавливает на голову игрока скин по нику
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 	 *
-	 * @param   name  Ник игрока
+	 * @param   name  пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	 */
 	public ItemCreator setPlayerSkull(String name) {
 		if(itemStack.getType() == Material.SKULL_ITEM && itemStack.getDurability() == 3) {
@@ -207,9 +207,9 @@ public class ItemCreator {
 	}
 	
 	/**
-	 * Устанавливает на голову игрока скин по текстуре
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 *
-	 * @param   texture  Текстура
+	 * @param   texture  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	 */
 	public ItemCreator setTextureSkull(String texture) {
 		if(itemStack.getType() == Material.SKULL_ITEM && itemStack.getDurability() == 3) {
@@ -226,7 +226,7 @@ public class ItemCreator {
 	}
 	
 	/**
-	 * Собирает предмет и возращает <code>ItemStack</code>
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ <code>ItemStack</code>
 	 */
 	public ItemStack build() {
 		return itemStack;

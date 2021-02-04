@@ -145,6 +145,7 @@ item-attack-lvl: '§cУ вас недостаточно уровня, чтобы
 spell-heal-name: 'Регенерация'
 spell-teleport-name: 'Телепортация'
 spell-meteor-name: 'Метеор'
+spell-icesnake-name: 'Ледяное облако'
 
 spell-cast-not-combination: '§cДанной комбинации не существует'
 spell-cast-not-mana: '§cУ вас недостаточно маны!'

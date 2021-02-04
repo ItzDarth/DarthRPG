@@ -145,6 +145,7 @@ item-attack-lvl: '§cУ вас недостаточно уровня, чтобы
 spell-bash-name: 'Удар Баша'
 spell-charge-name: 'Заряд'
 spell-uppercut-name: 'Апперкаут'
+spell-warscream-name: 'Боевой крик'
 
 spell-heal-name: 'Регенерация'
 spell-teleport-name: 'Телепортация'

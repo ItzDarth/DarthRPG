@@ -142,6 +142,8 @@ item-lore-indetification-mana-regen: '{value} §7Регенерация Маны
 item-attack-class: '§cВаш класс не может использовать такой вид оружия'
 item-attack-lvl: '§cУ вас недостаточно уровня, чтобы использовать это оружие'
 
+spell-bash-name: 'Удар Баша'
+
 spell-heal-name: 'Регенерация'
 spell-teleport-name: 'Телепортация'
 spell-meteor-name: 'Метеор'

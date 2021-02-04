@@ -148,3 +148,5 @@ spell-meteor-name: 'Метеор'
 spell-cast-not-combination: '§cДанной комбинации не существует'
 spell-cast-not-mana: '§cУ вас недостаточно маны!'
 spell-cast-success: '§7Вы использовали заклинание §f{spell}'
+
+mob-kill-holo: '§7[§f+{x} Комбат XP§7]'

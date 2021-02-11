@@ -134,7 +134,11 @@ item-lore-rarity-legendary: 'Легендарный'
 item-lore-rarity-fabled: 'Сказочный'
 item-lore-rarity-mythic: 'Мистический'
 
+item-woodensword-name: 'Деревянный меч'
+item-woodenbow-name: 'Деревянный лук'
 item-woodenstaff-name: 'Деревянный посох'
+item-woodenrelic-name: 'Деревянный релик'
+item-woodenknife-name: 'Деревянный кинжал'
 
 item-lore-indetification-health-regen: '{value} §7Регенерация Здоровья'
 item-lore-indetification-mana-regen: '{value} §7Регенерация Маны'
@@ -146,6 +150,11 @@ spell-bash-name: 'Удар Баша'
 spell-charge-name: 'Заряд'
 spell-uppercut-name: 'Апперкаут'
 spell-warscream-name: 'Боевой крик'
+
+spell-arrowstorm-name: 'Шторм стрел'
+spell-escape-name: 'Побег'
+spell-bombarrow-name: 'Взрывная стрела'
+spell-arrowshield-name: 'Щит'
 
 spell-heal-name: 'Регенерация'
 spell-teleport-name: 'Телепортация'

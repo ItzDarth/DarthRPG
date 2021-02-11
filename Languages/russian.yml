@@ -19,8 +19,8 @@ choose-class-title: 'Выбор класса'
 class-name-warrior: 'Воин'
 class-name-archer: 'Лучник'
 class-name-mage: 'Маг'
-class-name-berserk: 'Берсерк'
-class-name-archemage: 'Архимаг'
+class-name-shaman: 'Шаман'
+class-name-assasin: 'Ассасин'
 
 choose-class-warrior-title: '§fВыбрать §6§lВоина'
 choose-class-warrior-lore:

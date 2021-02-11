@@ -74,8 +74,8 @@ choose-class-mage-lore:
 - '§7тёмным магом или светлым магом.'
 - ''
 - '§eНажмите, чтобы выбрать!'
-choose-class-berserk-title: '§fВыбрать §6§lБерсерка'
-choose-class-berserk-lore:
+choose-class-shaman-title: '§fВыбрать §6§lШаман'
+choose-class-shaman-lore:
 - '§6⚔ Урон:             §a■■■§7■'
 - '§c♥ Защита:            §a■■■§7■■'
 - '§a➸ Радиус:           §a■■■§7■■'
@@ -93,8 +93,8 @@ choose-class-berserk-lore:
 - '§7умереть.'
 - ''
 - '§eНажмите, чтобы выбрать!'
-choose-class-archemage-title: '§fВыбрать §6§lАрхимага'
-choose-class-archemage-lore:
+choose-class-assasin-title: '§fВыбрать §6§lАссасин'
+choose-class-assasin-lore:
 - '§6⚔ Урон:             §a■■■§7■'
 - '§c♥ Защита:            §a■■■§7■■'
 - '§a➸ Радиус:           §a■■■§7■■'

@@ -23,17 +23,26 @@ public class MainTimer {
 						else if(rp.CAST_SEC > 0) {
 							updateSpellActionBar(rp);
 							rp.CAST_SEC--;
+							if(rp.CAST_SEC == 0) {
+								rp.CAST_BUILDER = new StringBuilder();
+							}
 						} else {
-							Location loc = rp.PLAYER.getLocation();
-							ChatAPI.sendActionBar(rp.PLAYER, 
-									"§c❤ "+rp.health+"/"+rp.maxHealth+
-									"    §7"+
-									loc.getBlockX()+" §f"+Utils.getCardinalDirection(rp.PLAYER)+" §7"+loc.getBlockZ()+
-									"    §b✹ "+rp.mana+"/"+rp.maxMana
-									);
+							updateDefaultActionBar(rp);
 						}
 						
-						
+						if(rp.noPvpTime == 0) {
+							if(rp.health < rp.maxHealth) {
+								int sum = rp.health+5+rp.temp_Health_Regen;
+								rp.health = sum > rp.maxHealth ? rp.maxHealth : sum;
+							}
+						}
+						if(rp.mana < rp.maxMana) {
+							int sum = rp.mana+1+rp.temp_Mana_Regen;
+							rp.mana = sum > rp.maxMana ? rp.maxMana : sum;
+						}
+						if(rp.noPvpTime > 0) {
+							rp.noPvpTime--;
+						}
 					}
 				}
 			}
@@ -42,20 +51,20 @@ public class MainTimer {
 	
 	public static void updateSpellActionBar(RPGPlayer rp) {
 		ChatAPI.sendActionBar(rp.PLAYER, 
-				"§c❤ "+rp.health+"/"+rp.maxHealth+
+				"§8[§c❤ "+rp.health+"/"+rp.maxHealth+"§8]"+
 				"    §7"+
 				formatSpell(rp)+
-				"    §b✹ "+rp.mana+"/"+rp.maxMana
+				"    §8[§b✹ "+rp.mana+"/"+rp.maxMana+"§8]"
 				);
 	}
 	
 	public static void updateDefaultActionBar(RPGPlayer rp) {
 		Location loc = rp.PLAYER.getLocation();
 		ChatAPI.sendActionBar(rp.PLAYER, 
-				"§c❤ "+rp.health+"/"+rp.maxHealth+
+				"§8[§c❤ "+rp.health+"/"+rp.maxHealth+"§8]"+
 				"    §7"+
 				loc.getBlockX()+" §f"+Utils.getCardinalDirection(rp.PLAYER)+" §7"+loc.getBlockZ()+
-				"    §b✹ "+rp.mana+"/"+rp.maxMana
+				"    §8[§b✹ "+rp.mana+"/"+rp.maxMana+"§8]"
 				);
 	}
 	

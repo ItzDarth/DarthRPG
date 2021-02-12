@@ -7,7 +7,7 @@ public enum zClass {
 	WARRIOR,
 	ARCHER,
 	MAGE,
-	BERSERK,
-	ARCHEMAGE;
+	SHAMAN,
+	ASSASIN;
 	
 }

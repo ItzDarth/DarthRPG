@@ -101,12 +101,19 @@ public class RPGItem {
 		// TYPE
 	}
 	
+	private List<DamageType> usesTypes = new ArrayList<DamageType>();
+	
 	public void setDamage(DamageType type, int damage) {
 		TAG.setInt(type.name().toLowerCase(), damage);
+		usesTypes.add(type);
 		lores.add(type.STARTWITH+" "+rp.LANGUAGE.getMessage("item-lore-damagetype-"+type.name().toLowerCase()).replace("{dmg}", Utils.commas(damage)));
 	}
 	
 	public void setLoreLevelAndClass() {
+		for(DamageType type : DamageType.values()) {
+			if(usesTypes.contains(type)) continue;
+			TAG.setInt(type.name().toLowerCase(), 0);
+		}
 		lores.add("");
 		lores.add(rp.LANGUAGE.getMessage("item-lore-lvlmin-"+(rp.level >= level ? "y" : "n")).replace("{lvl}", level+""));
 		lores.add(rp.LANGUAGE.getMessage("item-lore-classneed-"+(rp.CLASS == CLASS ? "y" : "n")).replace("{class}", rp.LANGUAGE.getMessage("class-name-"+CLASS.name().toLowerCase())));
@@ -138,17 +145,19 @@ public class RPGItem {
 	}
 	
 	public enum DamageType {
-		PHYSICAL("§6✤"),
-		EARTH("§2✤"),
-		THUNDER("§e✦"),
-		WATER("§b❉"),
-		FIRE("§c✹"),
-		AIR("§f❋");
+		PHYSICAL("§6✤", "§6-{x} ✤"),
+		EARTH("§2✤", "§2-{x} ✤"),
+		THUNDER("§e✦", "§e-{x} ✦"),
+		WATER("§b❉", "§b-{x} ❉"),
+		FIRE("§c✹", "§c-{x} ✹"),
+		AIR("§f❋", "§f-{x} ❋");
 		
 		public String STARTWITH;
+		public String STARTWITHDAMAGE;
 		
-		DamageType(String startwith) {
+		DamageType(String startwith, String startwithdamage) {
 			this.STARTWITH = startwith;
+			this.STARTWITHDAMAGE = startwithdamage;
 		}
 	}
 	

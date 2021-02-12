@@ -23,11 +23,11 @@ public enum ItemAPI {
 	// Воздушный - A
 	//
 	
-	WOODEN_SWORD(new ItemCreator(Material.WOOD_SWORD),                            "woodensword",      zClass.WARRIOR,   ItemRarity.NORMAL, new String[][] {{"P", "5"}}, new String[][] {}),
+	WOODEN_SWORD(new ItemCreator(Material.WOOD_SWORD),                            "woodensword",      zClass.WARRIOR,   ItemRarity.NORMAL, new String[][] {{"P", "7"}}, new String[][] {}),
 	WOODEN_BOW(new ItemCreator(Material.BOW),                                     "woodenbow",        zClass.ARCHER,    ItemRarity.NORMAL, new String[][] {{"P", "7"}}, new String[][] {}),
 	WOODEN_STAFF(new ItemCreator(Material.STONE_SWORD).setDurability(1),          "woodenstaff",      zClass.MAGE,      ItemRarity.NORMAL, new String[][] {{"P", "6"}}, new String[][] {}),
-	WOODEN_BATTLEAXE(new ItemCreator(Material.STONE_AXE).setDurability(1),        "woodenbattleaxe",  zClass.BERSERK,   ItemRarity.NORMAL, new String[][] {{"P", "6"}}, new String[][] {}),
-	WOODEN_ARCHEMAGE_STAFF(new ItemCreator(Material.WOOD_SWORD).setDurability(1), "woodenarchestaff", zClass.ARCHEMAGE, ItemRarity.NORMAL, new String[][] {{"P", "7"}}, new String[][] {});
+	WOODEN_RELIC(new ItemCreator(Material.STONE_AXE).setDurability(1),            "woodenrelic",      zClass.SHAMAN,    ItemRarity.NORMAL, new String[][] {{"P", "6"}}, new String[][] {}),
+	WOODEN_KNIFE(new ItemCreator(Material.WOOD_SWORD).setDurability(1),           "woodenknife",      zClass.ASSASIN,   ItemRarity.NORMAL, new String[][] {{"P", "6"}}, new String[][] {});
 	
 	private ItemCreator item;
 	private String key;

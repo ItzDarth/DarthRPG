@@ -35,7 +35,6 @@ public class HealSpell implements Spell {
 	@Override
 	public void runGradle_I(RPGPlayer rp, NBTTagCompound tag) { // 15%
 		int hp = (int) (rp.maxHealth *(15.0F / 100.0F));
-		System.out.println(hp);
 		int sum = rp.health+hp;
 		if(sum > rp.maxHealth) {
 			rp.health = rp.maxHealth;
@@ -61,7 +60,7 @@ public class HealSpell implements Spell {
 
 	@Override
 	public void runGradle_III(RPGPlayer rp, NBTTagCompound tag) { // 20%
-		int hp = (int) (rp.maxHealth *(20.0F / 100.0F));
+		int hp = (int) (rp.maxHealth *(35.0F / 100.0F));
 		int sum = rp.health+hp;
 		if(sum > rp.maxHealth) {
 			rp.health = rp.maxHealth;

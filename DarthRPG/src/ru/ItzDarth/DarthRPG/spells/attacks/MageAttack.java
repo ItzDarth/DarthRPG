@@ -3,6 +3,7 @@ package ru.ItzDarth.DarthRPG.spells.attacks;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Sound;
+import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
@@ -21,7 +22,7 @@ public class MageAttack implements Attack {
 		return zClass.MAGE;
 	}
 	
-	private Color clr = Color.fromRGB(110, 110, 110);
+	private static Color clr = Color.fromRGB(110, 110, 110);
 	
 	public void run(RPGPlayer rp, ItemStack item, NBTTagCompound tag) {
 		rp.PLAYER.setCooldown(item.getType(), 15);
@@ -29,6 +30,13 @@ public class MageAttack implements Attack {
 		Location loc = rp.PLAYER.getLocation();
 		Vector direction = loc.getDirection().normalize();
 		loc.getWorld().playSound(loc, Sound.ENTITY_ENDERPEARL_THROW, 1, 1);
+		
+		int PHYSICAL = tag.getInt("physical");
+		int EARTH = tag.getInt("earth");
+		int THUNDER = tag.getInt("thunder");
+		int WATER = tag.getInt("water");
+		int FIRE = tag.getInt("fire");
+		int AIR = tag.getInt("air");
 		
         for(double d = 1; d <= 8; d += 0.5) {
            double x = direction.getX() * d;
@@ -38,24 +46,19 @@ public class MageAttack implements Attack {
 		   
            DarthParticle.spawnParticle(loc.getWorld(), ParticleType.REDSTONE, loc, 5, 0, 0, 0, clr);
            DarthParticle.spawnParticle(loc.getWorld(), ParticleType.CRIT, loc, 1, 0, 0, 0, 0D);
-           if(d == 1.0 || d == 2.0 || d == 3.0 || d == 4.0 || d == 5.0 || d == 6.0 || d == 7.0) {
-        	   int PHYSICAL = tag.getInt("physical");
-			   int EARTH = tag.getInt("earth");
-			   int THUNDER = tag.getInt("thunder");
-			   int WATER = tag.getInt("water");
-			   int FIRE = tag.getInt("fire");
-			   int AIR = tag.getInt("air");
-        	   loc.getWorld().getNearbyEntities(loc, 1, 1, 1).forEach(entity -> {
+           if(d == 1.0 || d == 2.0 || d == 3.0 || d == 4.0 || d == 5.0) {
+        	   for(Entity entity : loc.getWorld().getNearbyEntities(loc, 0.49, 1, 0.49)) {
         		   if(entity.hasMetadata("enemy")) {
-        			   // Дописать!!
-        			   DamageAPI.damage(rp.PLAYER, entity, DamageType.PHYSICAL, PHYSICAL);
-        			   if(EARTH > 0) DamageAPI.damage(rp.PLAYER, entity, DamageType.EARTH, EARTH);
-        			   if(THUNDER > 0) DamageAPI.damage(rp.PLAYER, entity, DamageType.THUNDER, THUNDER);
-        			   if(WATER > 0) DamageAPI.damage(rp.PLAYER, entity, DamageType.WATER, WATER);
-        			   if(FIRE > 0) DamageAPI.damage(rp.PLAYER, entity, DamageType.FIRE, FIRE);
-        			   if(AIR > 0) DamageAPI.damage(rp.PLAYER, entity, DamageType.AIR, AIR);
+        			   DamageAPI.damage(rp.PLAYER, entity, new Object[][] {
+        				   {DamageType.PHYSICAL, PHYSICAL},
+        				   {DamageType.EARTH, EARTH},
+        				   {DamageType.THUNDER, THUNDER},
+        				   {DamageType.WATER, WATER},
+        				   {DamageType.FIRE, FIRE},
+        				   {DamageType.AIR, AIR},
+        			   });
         		   }
-        	   });
+        	   }
            }
            loc.subtract(x,y,z);
         }

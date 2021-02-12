@@ -39,17 +39,17 @@ public class ChooseClassGUI {
 			}
 		}));
 		inv.setIcon(14, new Icon(
-				new ItemCreator(ItemAPI.WOODEN_BATTLEAXE.getItem()).setName(rp.LANGUAGE.getMessage("choose-class-berserk-title")).setLore(rp.LANGUAGE.getListMessage("choose-class-berserk-lore")).build()
+				new ItemCreator(ItemAPI.WOODEN_RELIC.getItem()).setName(rp.LANGUAGE.getMessage("choose-class-shaman-title")).setLore(rp.LANGUAGE.getListMessage("choose-class-shaman-lore")).build()
 				).addClickAction(new ClickAction() {
 			public void execute(Player player) {
-				selectClass(player, inv, rp, zClass.BERSERK);
+				selectClass(player, inv, rp, zClass.SHAMAN);
 			}
 		}));
 		inv.setIcon(15, new Icon(
-				new ItemCreator(ItemAPI.WOODEN_ARCHEMAGE_STAFF.getItem()).setName(rp.LANGUAGE.getMessage("choose-class-archemage-title")).setLore(rp.LANGUAGE.getListMessage("choose-class-archemage-lore")).build()
+				new ItemCreator(ItemAPI.WOODEN_KNIFE.getItem()).setName(rp.LANGUAGE.getMessage("choose-class-assasin-title")).setLore(rp.LANGUAGE.getListMessage("choose-class-assasin-lore")).build()
 				).addClickAction(new ClickAction() {
 			public void execute(Player player) {
-				selectClass(player, inv, rp, zClass.ARCHEMAGE);
+				selectClass(player, inv, rp, zClass.ASSASIN);
 			}
 		}));
 		

@@ -7,7 +7,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import ru.ItzDarth.DarthRPG.DarthRPG;
 import ru.ItzDarth.DarthRPG.api.inventory.ClickAction;
 import ru.ItzDarth.DarthRPG.api.inventory.CustomHolder;
 import ru.ItzDarth.DarthRPG.api.inventory.Icon;
@@ -41,7 +43,11 @@ public class InventoryListener implements Listener {
 			if(e.getPlayer() instanceof Player) {
 				CustomHolder customHolder = (CustomHolder) e.getView().getTopInventory().getHolder();
 				if(customHolder.getCancelClose() == true) {
-					e.getPlayer().openInventory(customHolder.getInventory());
+					new BukkitRunnable() {
+						public void run() {
+							e.getPlayer().openInventory(customHolder.getInventory());
+						}
+					}.runTaskLater(DarthRPG.INSTANCE, 10L);
 				}
 			}
 		}

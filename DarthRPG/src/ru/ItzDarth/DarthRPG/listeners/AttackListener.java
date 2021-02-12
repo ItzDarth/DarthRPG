@@ -2,6 +2,7 @@ package ru.ItzDarth.DarthRPG.listeners;
 
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -32,10 +33,18 @@ public class AttackListener implements Listener {
 			if(tag.hasKey("weapon")) {
 				RPGPlayer rp = RPGApi.getRPGPlayer(p);
 				if(rp.CAST_SEC == 0) {
+					if(rp.CLASS == zClass.ARCHER) {
+						rp.CAST_BUILDER = new StringBuilder("L");
+						rp.CAST_SEC = 3;
+						rp.SHOW_SPELL = 0;
+						p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
+						MainTimer.updateSpellActionBar(rp);
+						return;
+					}
 					if(p.hasCooldown(item.getType())) return;
 					
 					zClass weaponClass = zClass.valueOf(tag.getString("class"));
-					if(weaponClass != zClass.MAGE && weaponClass != zClass.ARCHEMAGE) return;
+					if(weaponClass != zClass.MAGE && weaponClass != zClass.SHAMAN) return;
 					if(rp.CLASS != weaponClass) {
 						p.sendMessage(rp.LANGUAGE.getMessage("item-attack-class"));
 						return;
@@ -49,6 +58,18 @@ public class AttackListener implements Listener {
 					
 					rp.ATTACK_TYPE.run(rp, item, tag);
 				} else { // Кастуем на L
+					zClass weaponClass = zClass.valueOf(tag.getString("class"));
+					if(rp.CLASS != weaponClass) {
+						p.sendMessage(rp.LANGUAGE.getMessage("item-attack-class"));
+						return;
+					}
+					
+					int weaponLvl = tag.getInt("level");
+					if(rp.level < weaponLvl) {
+						p.sendMessage(rp.LANGUAGE.getMessage("item-attack-lvl"));
+						return;
+					}
+					
 					rp.CAST_BUILDER.append("L");
 					if(checkSize(rp, tag)) {
 						rp.CAST_SEC = 3;
@@ -58,15 +79,36 @@ public class AttackListener implements Listener {
 				}
 			}
 		} else if(action == Action.RIGHT_CLICK_BLOCK || action == Action.RIGHT_CLICK_AIR) { // Кастуем на R
+			if(item.getType() == Material.BOW) e.setCancelled(true);
 			ItemNBT nbt = new ItemNBT(item);
 			NBTTagCompound tag = nbt.getTag();
 			if(tag.hasKey("weapon")) {
 				RPGPlayer rp = RPGApi.getRPGPlayer(p);
 				if(rp.CAST_SEC == 0) {
-					rp.CAST_BUILDER = new StringBuilder("R");
-					rp.CAST_SEC = 3;
-					p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
-					MainTimer.updateSpellActionBar(rp);
+					zClass weaponClass = zClass.valueOf(tag.getString("class"));
+					if(rp.CLASS != weaponClass) {
+						p.sendMessage(rp.LANGUAGE.getMessage("item-attack-class"));
+						return;
+					}
+					
+					int weaponLvl = tag.getInt("level");
+					if(rp.level < weaponLvl) {
+						p.sendMessage(rp.LANGUAGE.getMessage("item-attack-lvl"));
+						return;
+					}
+					
+					if(rp.CLASS == zClass.ARCHER) {
+						if(p.hasCooldown(item.getType())) return;
+						p.launchProjectile(Arrow.class);
+						p.getWorld().playSound(p.getLocation(), Sound.ENTITY_ARROW_SHOOT, 1, 1);
+						rp.ATTACK_TYPE.run(rp, item, tag);
+					} else {
+						rp.CAST_BUILDER = new StringBuilder("R");
+						rp.CAST_SEC = 3;
+						rp.SHOW_SPELL = 0;
+						p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
+						MainTimer.updateSpellActionBar(rp);
+					}
 				} else {
 					rp.CAST_BUILDER.append("R");
 					if(checkSize(rp, tag)) {

@@ -3,14 +3,17 @@ package ru.ItzDarth.DarthRPG.api.hologram;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import net.minecraft.server.v1_12_R1.EntityArmorStand;
 import net.minecraft.server.v1_12_R1.PacketPlayOutEntityDestroy;
 import net.minecraft.server.v1_12_R1.PacketPlayOutSpawnEntityLiving;
+import ru.ItzDarth.DarthRPG.DarthRPG;
 
 public class Hologram {
 	
@@ -33,6 +36,25 @@ public class Hologram {
         create(false);
     }
     
+    public void showAllPlayerAtTemp(int seconds) {
+    	for(Player p : Bukkit.getOnlinePlayers()) {
+    		for (EntityArmorStand armor : entitylist) {
+                PacketPlayOutSpawnEntityLiving packet = new PacketPlayOutSpawnEntityLiving(armor);
+                ((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
+            }
+    	}
+    	new BukkitRunnable() {
+    		public void run() {
+    			for(Player p : Bukkit.getOnlinePlayers()) {
+    				for (EntityArmorStand armor : entitylist) {
+    		            PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(armor.getId());
+    		            ((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
+    		        }
+    	    	}
+    		}
+    	}.runTaskLater(DarthRPG.INSTANCE, seconds*20);
+    }
+    
     public void showPlayer(Player p) {
         for (EntityArmorStand armor : entitylist) {
             PacketPlayOutSpawnEntityLiving packet = new PacketPlayOutSpawnEntityLiving(armor);
@@ -44,10 +66,9 @@ public class Hologram {
         for (EntityArmorStand armor : entitylist) {
             PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(armor.getId());
             ((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
- 
         }
     }
- 
+    
     private void create(boolean fdg) {
     	if(fdg) {
 	        for (String Text : this.Text) {
